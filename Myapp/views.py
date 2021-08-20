@@ -1,9 +1,10 @@
 from django.contrib.auth import decorators
 from django.core import paginator
 from django.db.models.base import Model
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.http import request
-from django.db import models
+from Myapp import models
 from .models import  User_data, products,cart
 from .models import Catagory
 from django.contrib import messages
@@ -14,7 +15,8 @@ from django.contrib.auth.decorators import login_required
 from Myapp.middleware import auth_middleware
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
-
+from hashlib import md5
+from six import ensure_binary
 
 
 # Create your views here.
@@ -23,8 +25,13 @@ from django.core.paginator import Paginator
 # SITE VIEWS HARE.....
 
 def Register(request):
+    try:
+        msg =   request.session['msg']
+        del request.session['msg']
+    except:
+        msg =   ''
     
-    return render(request, 'Register.html')
+    return render(request, 'Register.html', {'msg':msg})
 
 # Cart Page view...
 def cart(request):
@@ -143,36 +150,42 @@ def update_profile(request,id):
 # user register hare
 def user_data(request):
     if request.method=='POST':
-        firstname=request.POST['firstname']
+        # firstname=request.POST['firstname']
+        # lastname=request.POST['lastname']
+        # email=request.POST['email']
+        # mobile=request.POST['mobile']
+        # password=request.POST['password1']
+        # Cpassword=request.POST['password2']
+        # if password==Cpassword:
+        #   if User_data.objects.filter(email=email).exists():
+        #       messages.info(request, "Email Address Has Alredy Registered...")
+        #       return redirect("/Register")
+        #   else:
+        #     user_data=User_data(firstname=firstname, lastname=lastname, email=email, contact=mobile, password=password, Cpassword=Cpassword)
+        #     user_data.save()
+        #     messages.info(request, "You're Registered Successfully...")
+        #     return redirect("/Register")
+        # else:
+        #  messages.info(request, "Password & Confirm Password Must Be Same...")
 
-        lastname=request.POST['lastname']
-
-        email=request.POST['email']
-
-        mobile=request.POST['mobile']
-
-        password=request.POST['password1']
-
-        Cpassword=request.POST['password2']
-
-        if password==Cpassword:
-
-          if User_data.objects.filter(email=email).exists():
-              messages.info(request, "Email Address Has Alredy Registered...")
-              return redirect("/Register")
-
-          else:
-            user_data=User_data(firstname=firstname, lastname=lastname, email=email, contact=mobile, password=password, Cpassword=Cpassword)
-            user_data.save()
-            messages.info(request, "You're Registered Successfully...")
-
-            return redirect("/index")
-
+        # return redirect('/Register')
+        
+        if models.User_data.objects.filter(email=request.POST['email']).exists():
+            request.session['msg'] = "Email Already Exists"
+            return HttpResponseRedirect("/Register")
+        elif md5(ensure_binary(request.POST['password1'])).hexdigest() == md5(ensure_binary(request.POST['password2'])).hexdigest():
+            user = models.User_data()
+            user.firstname  =   request.POST['firstname']
+            user.lastname   =   request.POST['lastname']
+            user.email      =   request.POST['email']
+            user.contact    =   request.POST['mobile']
+            user.password   =   md5(ensure_binary(request.POST['password1'])).hexdigest()
+            user.save()
+            request.session['msg'] = "Registered Successfully.....!"
+            return HttpResponseRedirect("/Register")
         else:
-         messages.info(request, "Password & Confirm Password Must Be Same...")
-
-        return redirect('/Register')
-
+            request.session['msg'] = "New and Confirm Password are Not Matching"
+            return HttpResponseRedirect("/Register")
 # user login.....
 def login_data(request):
     if request.method=='POST':
@@ -193,7 +206,11 @@ def login_view(request):
 
 #user_logout hare...
 def logout(request):
-    auth.logout(request)
+    # auth.logout(request)
+    try:
+        del request.session['email']
+    except:
+        pass
     return redirect('/index')
 
 # user_profile page...

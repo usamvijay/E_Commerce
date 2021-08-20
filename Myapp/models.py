@@ -8,8 +8,8 @@ class User_data(models.Model):
    email = models.EmailField( null=True)  
    contact = models.CharField(max_length=15) 
    State = models.CharField(max_length=15) 
-   password = models.CharField(max_length=20)  
-   Cpassword = models.CharField(max_length=20)
+   password = models.CharField(max_length=100)  
+   # Cpassword = models.CharField(max_length=20)
 
 
 

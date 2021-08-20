@@ -15,9 +15,16 @@
 
 						<h2 style="margin-left:100px; color:black;">New User Signup!</h2>
 						
-							{% for msg in messages %}
+							<!-- {% for msg in messages %}
 							<p style="color: red;"> {{ msg }}</p>
-							{% endfor %}
+							{% endfor %} -->
+							<center>
+								{% if 'Successfully' in msg %}
+							<p style="color: green;"> {{ msg }}</p>
+							{% else %}
+							<p style="color: red;"> {{ msg }}</p>
+							{% endif %}
+							</center>
 					
 						<form  method="POST" action="/user_data/">
 
