@@ -1,0 +1,60 @@
+{% include 'admin/admin_header.html' %}
+{% load static %}
+
+{% include 'admin/admin_nav.html' %}
+     <!-- Left side column. contains the logo and sidebar -->
+
+     <!-- Right side column. Contains the navbar and content of the page -->
+     <div class="content-wrapper">
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+         
+       </section>
+
+       <!-- Main content -->
+       <section class="content">
+         <div class="row">
+           <div class="col-md-3"></div>
+           <!-- left column -->
+           <div class="col-md-6">
+            <h1 style="font-family: impact;" >
+              Catagories 
+            </h1>
+           
+             <!-- general form elements -->
+             <div class="box box-primary">
+               <div class="box-header">
+                <a style="margin-left:100px;" href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+
+               </div><!-- /.box-header -->
+               <!-- form start -->
+                <form  method="POST" action="">
+
+                {% csrf_token %}
+                <div class="box-body">
+                   <div class="form-group">
+                     <label>Catagory Name</label>
+                       <input class="form-control" type="text" name="cat" value="{{ cat.Cat }}" placeholder="Enter Catagory">
+                   
+                   </div>
+                                   </div><!-- /.box-body -->
+
+                 <div class="box-footer">
+                   <button type="submit" class="btn btn-primary">Update Catagories</button>
+                 </div>
+               </form>
+             </div><!-- /.box -->
+
+             <!-- Form Element sizes -->
+             
+                   <!-- Select multiple-->
+                  
+                 </form>
+               </div>
+               <div class="col-md-3"></div><!-- /.box-body -->
+             </div><!-- /.box -->
+
+
+
+
+   

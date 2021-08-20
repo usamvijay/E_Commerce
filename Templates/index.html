@@ -1,0 +1,100 @@
+
+
+{% block content %}
+	
+	
+
+{% include 'header.html'%}
+	{% load static %}
+
+
+	{% for msg in messages %}
+	
+							<p style="color: green; text-align: center;"> {{ msg }}</p>
+							{% endfor %}
+	
+	
+							
+							<section>
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="left-sidebar">
+												<h2>Category</h2>
+												<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title">
+																<u><a style="color: blue;" href="/shop">
+																	<span  class="badge pull-right"></span>
+																	>> view all
+																</a></u>
+															</h4> <br>
+															<h4 class="panel-title">
+																
+																	
+																{% for Catgory in catagory %}
+
+																<a style="color:blue;" href="{% url 'vijay' Catgory.id %}">
+														
+
+																	{{ Catgory.Cat }}
+																</a> &nbsp; <br> <br>
+																{% endfor %}
+															</h4>
+														</div>
+														
+													</div>
+												</div><!--/category-products-->
+											
+												<!-- <div class="brands_products"><!--brands_products-->
+													<!--/brands_products-->
+												
+												
+												
+											
+											</div>
+										</div>
+										
+										<div class="col-sm-9 padding-right">
+											<div class="features_items"><!--features_items-->
+												<h2 class="title text-center">Features Items</h2>
+
+												{% for product in product %}
+												<div class="col-sm-3">
+													
+
+													<div class="product-image-wrapper">
+														
+														<div class="single-products">
+															<a href="{% url 'display' id=product.id %}">
+                                                       <img style="width:150px; height:150px; " src="{{ product.image.url }}" alt="" />
+													   
+													   <p style="color:green;font-size:12px;">{{ product.title }}</p></a>
+													   <p><s><h6>Rs:{{ product.final_price }}</h6></s><h3> Rs:{{ product.offer_price }}</h3></p>
+													   
+													   <a href="{% url 'display' id=product.id %}" class="btn btn-info btn-sm ">View Details</a>
+														<a href="#" class="btn btn-danger btn-sm  disabled"><i class="fa fa-shopping-cart "></i> Add Cart</a>
+														
+													</div>
+															
+																
+														</div>
+															
+													</div>
+													{% endfor %}
+												</div>
+												</div>
+												
+											</div><!--features_items-->
+											
+											
+											
+										</div>
+									</div>
+								</div>
+							</section>
+							
+							
+ {% include 'footer.html'%}
+ {% endblock %}

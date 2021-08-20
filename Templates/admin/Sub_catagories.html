@@ -1,0 +1,133 @@
+{% include 'admin/admin_header.html' %}
+{% load static %}
+
+{% include 'admin/admin_nav.html' %}
+     <!-- Left side column. contains the logo and sidebar -->
+
+     <!-- Right side column. Contains the navbar and content of the page -->
+     <div class="content-wrapper">
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+         
+       </section>
+
+       <!-- Main content -->
+       <section class="content">
+         <div class="row">
+           <div class="col-md-3"></div>
+           <!-- left column -->
+           <div class="col-md-6">
+            <h1 style="font-family: impact;" >
+              Catagories 
+            </h1>
+           
+             <!-- general form elements -->
+             <div class="box box-primary">
+               <div class="box-header">
+                <a style="margin-left:100px;" href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+
+               </div><!-- /.box-header -->
+               <!-- form start -->
+               <form method="POST" action="/adding_SubCat/">
+                {% csrf_token %}
+                <div class="box-body">
+                   
+                   <div class="form-group">
+                    <label>Catagory Name</label>
+                    <select class="form-control">
+{% for Cat in catagory %}
+                      <option value="{{ Cat.id}}">{{ Cat.email }}</option>
+
+                      {% endfor %}
+
+                    </select>
+                    <input class="form-control" type="number" name="cat_id" placeholder="Enter Catagory">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Catagory Name</label>
+                    <input class="form-control" type="text" name="sub_catagory" placeholder="Enter Catagory">
+                  </div>
+
+                                   </div><!-- /.box-body -->
+
+                 <div class="box-footer">
+                   <button type="submit" class="btn btn-primary">Submit</button>
+                 </div>
+               </form>
+             </div><!-- /.box -->
+
+             <!-- Form Element sizes -->
+             
+                   <!-- Select multiple-->
+                  
+                 </form>
+               </div>
+               <div class="col-md-3"></div><!-- /.box-body -->
+             </div><!-- /.box -->
+
+
+
+
+     <div class="row">
+       <div class="col-xs-12">
+         <div class="box">
+           <div class="box-header">
+             <h3 class="box-title">Responsive Hover Table</h3>
+             <div class="box-tools">
+               <div class="input-group">
+                 <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                 <div class="input-group-btn">
+                   
+                 </div>
+               </div>
+             </div>
+           </div><!-- /.box-header -->
+           <div class="box-body table-responsive no-padding">
+             <table class="table table-hover">
+               <tr>
+                 <th>ID</th>
+                 <th>User</th>
+                 <th>Date</th>
+                 <th>Status</th>
+                 <th>Reason</th>
+               </tr>
+               <tr>
+                 <td>183</td>
+                 <td>John Doe</td>
+                 <td>11-7-2014</td>
+                 <td><span class="label label-success">Approved</span></td>
+                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+               </tr>
+               <tr>
+                 <td>219</td>
+                 <td>Alexander Pierce</td>
+                 <td>11-7-2014</td>
+                 <td><span class="label label-warning">Pending</span></td>
+                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+               </tr>
+               <tr>
+                 <td>657</td>
+                 <td>Bob Doe</td>
+                 <td>11-7-2014</td>
+                 <td><span class="label label-primary">Approved</span></td>
+                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+               </tr>
+               <tr>
+                 <td>175</td>
+                 <td>Mike Doe</td>
+                 <td>11-7-2014</td>
+                 <td><span class="label label-danger">Denied</span></td>
+                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+               </tr>
+             </table>
+           </div><!-- /.box-body -->
+         </div><!-- /.box -->
+       </div>
+     </div>
+   </section><!-- /.content -->
+ </div>
+</div><!--/.col (right) -->
+</div>   <!-- /.row -->
+<!-- /.cont
+   {% include 'admin/admin_footer.html' %}

@@ -1,0 +1,99 @@
+{% include 'admin/admin_header.html' %}
+{% load static %}
+
+{% include 'admin/admin_nav.html' %}
+     <!-- Left side column. contains the logo and sidebar -->
+
+     <!-- Right side column. Contains the navbar and content of the page -->
+     <div class="content-wrapper">
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+         
+       </section>
+
+       <!-- Main content -->
+       <section class="content">
+         <div class="row">
+           <div class="col-md-1"></div>
+           <!-- left column -->
+           <div class="col-md-10">
+            <h1 style="font-family: impact;" >
+              Products
+            </h1>
+           
+             <!-- general form elements -->
+             <div class="box box-primary">
+               <div class="box-header">
+                <a style="margin-left:100px;" href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+
+               </div><!-- /.box-header -->
+               <!-- form start -->
+               <form method="POST" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <div class="box-body">
+                   <div class="row">
+                   <div class="form-group col-md-4">
+
+                    <label>Chose Catagories</label>
+                    <select name="cat_id" class="form-control">
+                      
+                      {% for cat in cat  %}
+                        
+                      
+                      <option value="{{ cat.id }}">{{ cat.Cat }}
+                        
+                      </option> 
+                      {% endfor %}
+
+
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-4">
+
+                    <label>Product Name</label>
+                    <input class="form-control" type="text" value="{{ product.title }}" name="name" placeholder="Product Name">
+                  </div>
+                  <div class="form-group col-md-4">
+
+                    <label>Image</label>
+                    <input class="form-control" type="file" value="" name="image">
+                  </div>
+                          </div>
+                        <div class="row">
+                         <div class="form-group col-md-4">
+
+                         <label>Offer Price</label>
+                      <input class="form-control" type="number" value="{{ product.offer_price }}" name="offer-price" placeholder="Offer Price">
+                        </div>
+
+                      <div class="form-group col-md-4">
+
+                   <label>Final Price Name</label>
+                 <input class="form-control" type="number" value="{{ product.final_price }}" name="final_price" placeholder="Final Price">
+                  </div>
+                    <div class="form-group col-md-4">
+
+                    <label>Description</label>
+                    <input class="form-control" type="text" value="{{ product.Description }}" name="description" placeholder="Description">
+ </div>
+                                   </div><!-- /.box-body -->
+
+                 <div class="box-footer">
+                   <button type="submit" class="btn btn-primary">Update Products</button>
+                 </div>
+               </form>
+             </div><!-- /.box -->
+
+             <!-- Form Element sizes -->
+             
+                   <!-- Select multiple-->
+                  
+                 </form>
+               </div>
+               <div class="col-md-1"></div><!-- /.box-body -->
+             </div><!-- /.box -->
+
+
+
+

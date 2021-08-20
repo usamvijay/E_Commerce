@@ -1,0 +1,51 @@
+{%  include 'header.html' %}
+
+{% load static %}
+	
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-sm-offset-1">
+				
+				</div>
+				
+				<div class="col-sm-5">
+					<div style="background-color: grey; padding:25px; border-radius: 15px;" class="signup-form">
+                        <a style="margin-left:100px;" href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+
+						<h2 style="margin-left:100px; color:black;">Update Profile</h2>
+						
+												
+						<form  method="POST" action="">
+
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-md-6">
+                            <label>Firstname</label>
+							<input type="text" name="firstname" value="{{ user.firstname }}" placeholder="First name" required />
+							</div>
+							<div class="col-md-6">
+                            <label>Lastname</label>
+							<input type="text" name="lastname" value="{{ user.lastname }}" placeholder="Last name" required />
+							</div>
+</div>
+</
+                            <label>Email</label>
+							<input type="email" name="email" value="{{ user.email }}" placeholder="Email Address" required />
+                            <label>Mobile Number</label>
+							<input type="number" name="mobile" value="{{ user.contact }}" placeholder="Mobile Number" required />
+							
+							
+							<button type="submit" class="btn btn-info form-control">Submit</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+
+                <div class="col-sm-4 col-sm-offset-1">
+				
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	{% include 'footer.html' %}
